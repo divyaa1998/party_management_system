@@ -1,0 +1,512 @@
+<app-header></app-header>
+
+<div class="pagetitle">
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/party-management">Home</a>
+      </li>
+
+      <li class="breadcrumb-item active">{{ partyFormValue }} Party</li>
+    </ol>
+  </nav>
+</div>
+<!-- End Page Title -->
+<section class="section">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ partyFormValue }} Party</h5>
+
+          <form
+            class="row g-3"
+            [formGroup]="partyForm"
+            enctype="multipart/form-data"
+            (ngSubmit)="addParty()"
+          >
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label"> Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="name"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label">Company Name *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="company_name"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['company_name'].touched) &&
+                  f['company_name'].errors
+                "
+              >
+                <div *ngIf="f['company_name'].errors['required']">
+                  Please enter company name.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label">Mobile No *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="mobile_no"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['mobile_no'].touched) && f['mobile_no'].errors
+                "
+              >
+                <div *ngIf="f['mobile_no'].errors['required']">
+                  Please enter mobile no.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label">Telephone No</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="telephone_no"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label">Whatsapp No</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="whatsapp_no"
+              />
+            </div>
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label">Email *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="email"
+              />
+              <div
+                class="text-danger"
+                *ngIf="(submitted || f['email'].touched) && f['email'].errors"
+              >
+                <div *ngIf="f['email'].errors['required']">
+                  Please enter email.
+                </div>
+                <div *ngIf="f['email'].errors['pattern']">
+                  Please enter valid email.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputName5" class="form-label">Remark </label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="remark"
+              />
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Login Access *</label>
+              <select
+                id="inputState"
+                class="form-select"
+                formControlName="login_access"
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['login_access'].touched) &&
+                  f['login_access'].errors
+                "
+              >
+                <div *ngIf="f['login_access'].errors['required']">
+                  Please select login access.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Apply TDS *</label>
+              <select
+                id="inputState"
+                class="form-select"
+                formControlName="apply_tds"
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['apply_tds'].touched) && f['apply_tds'].errors
+                "
+              >
+                <div *ngIf="f['apply_tds'].errors['required']">
+                  Please select tds.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">Credit Limit*</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputName5"
+                formControlName="credit_limit"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['credit_limit'].touched) &&
+                  f['credit_limit'].errors
+                "
+              >
+                <div *ngIf="f['credit_limit'].errors['required']">
+                  Please enter limit.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">DOB *</label>
+              <input
+                type="text"
+                placeholder="YYYY-MM-DD"
+                class="form-control"
+                id="inputName5"
+                formControlName="date_of_birth"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['date_of_birth'].touched) &&
+                  f['date_of_birth'].errors
+                "
+              >
+                <div *ngIf="f['date_of_birth'].errors['required']">
+                  Please enter DOB.
+                </div>
+                <div *ngIf="f['date_of_birth'].errors['pattern']">
+                  Please enter valid DOB(YYYY_MM_DD).
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputState" class="form-label"
+                >Anniversary Date *</label
+              >
+              <input
+                type="text"
+                placeholder="YYYY-MM-DD"
+                class="form-control"
+                id="inputName5"
+                formControlName="anniversary_date"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  (submitted || f['anniversary_date'].touched) &&
+                  f['anniversary_date'].errors
+                "
+              >
+                <div *ngIf="f['anniversary_date'].errors['required']">
+                  Please enter anniversary date.
+                </div>
+                <div *ngIf="f['anniversary_date'].errors['pattern']">
+                  Please enter valid date(YYYY_MM_DD).
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="inputNumber" class="form-label"> Image *</label>
+              <div class="col-sm-10" *ngIf="!imageFileUrl">
+                <input
+                  class="form-control"
+                  type="file"
+                  accept="image/png, image/jpg, image/jpeg"
+                  (change)="onImageSelected($event)"
+                  formControlName="image"
+                  id="formFile"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="(submitted || f['image'].touched) && f['image'].errors"
+                >
+                  <div *ngIf="f['image'].errors['required']">
+                    Please select Image.
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="imageFileUrl" class="col-sm-10 img_wrp">
+                <img
+                  [src]="imageFileUrl"
+                  alt="Selected Image"
+                  class="img-fluid catImg"
+                />
+                <i
+                  class="bi bi-x-circle-fill close"
+                  (click)="removeImage()"
+                  *ngIf="partyFormValue != 'View'"
+                ></i>
+              </div>
+            </div>
+            <div formArrayName="address">
+              <div
+                *ngFor="let address of address.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="address-entry row">
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Address Line 1 *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="address_line_1"
+                    />
+                    <div
+                      *ngIf="
+                        submitted && address.get('address_line_1')?.invalid
+                      "
+                      class="text-danger"
+                    >
+                      Address Line 1 is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Address Line 2 *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="address_line_2"
+                    />
+                    <div
+                      *ngIf="
+                        submitted && address.get('address_line_2')?.invalid
+                      "
+                      class="text-danger"
+                    >
+                      Address Line 2 is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Country *
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="country"
+                    />
+                    <div
+                      *ngIf="submitted && address.get('country')?.invalid"
+                      class="text-danger"
+                    >
+                      country is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label">State * </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="state"
+                    />
+                    <div
+                      *ngIf="submitted && address.get('state')?.invalid"
+                      class="text-danger"
+                    >
+                      state is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label">City * </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="city"
+                    />
+                    <div
+                      *ngIf="submitted && address.get('city')?.invalid"
+                      class="text-danger"
+                    >
+                      city is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Pincode *
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="pincode"
+                    />
+                    <div
+                      *ngIf="submitted && address.get('pincode')?.invalid"
+                      class="text-danger"
+                    >
+                      pincode is required.
+                    </div>
+                  </div>
+
+                  <div class="pt-2 d-flex" *ngIf="partyFormValue != 'View'">
+                    <a class="btn btn-primary btn-sm m-1" (click)="addAddress()"
+                      ><i class="bi bi-plus-circle"></i
+                    ></a>
+                    <a
+                      class="btn btn-danger btn-sm m-1"
+                      (click)="removeAddress(i)"
+                      ><i class="bi bi-trash"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div formArrayName="bank">
+              <div
+                *ngFor="let bank of bank.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <div class="address-entry row">
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >IFSC code *</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="bank_ifsc_code"
+                    />
+                    <div
+                      *ngIf="submitted && bank.get('bank_ifsc_code')?.invalid"
+                      class="text-danger"
+                    >
+                      IFSC code is required.
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Bank Name *
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="bank_name"
+                    />
+                    <div
+                      *ngIf="submitted && bank.get('bank_name')?.invalid"
+                      class="text-danger"
+                    >
+                      Bank name is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Branch Name *
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="branch_name"
+                    />
+                    <div
+                      *ngIf="submitted && bank.get('branch_name')?.invalid"
+                      class="text-danger"
+                    >
+                      Branch name is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Account No *
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="account_no"
+                    />
+                    <div
+                      *ngIf="submitted && bank.get('account_no')?.invalid"
+                      class="text-danger"
+                    >
+                      Account No is required.
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputName5" class="form-label"
+                      >Account Holder Name *
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputName5"
+                      formControlName="account_holder_name"
+                    />
+                    <div
+                      *ngIf="
+                        submitted && bank.get('account_holder_name')?.invalid
+                      "
+                      class="text-danger"
+                    >
+                      Name is required.
+                    </div>
+                  </div>
+                  <div class="pt-2 d-flex" *ngIf="partyFormValue != 'View'">
+                    <a class="btn btn-primary btn-sm m-1" (click)="addBank()"
+                      ><i class="bi bi-plus-circle"></i
+                    ></a>
+                    <a class="btn btn-danger btn-sm m-1" (click)="removeBank(i)"
+                      ><i class="bi bi-trash"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center" *ngIf="partyFormValue != 'View'">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="reset" class="btn btn-secondary m-3">Reset</button>
+            </div>
+          </form>
+          <!-- End Multi Columns Form -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
